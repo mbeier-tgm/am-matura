@@ -1,0 +1,17 @@
+---
+title: "Mathematik Beispiele"
+author: "Michael Beier, Linus Dehner, Ryan Foster"
+date: "1/22/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Über diese Mitschrift
+
+# Beispiele
+
+
+
