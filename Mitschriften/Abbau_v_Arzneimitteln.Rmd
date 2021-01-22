@@ -1,0 +1,106 @@
+## Abbau von Arzneimitteln
+
+\begin{tcolorbox}[title=Angabe, colframe=green!50!black, colback=gray!5!white, coltitle=white]
+Bei der Einnahme von Arzneimitteln gelangen Wirkstoffe über den Verdauungstrakt in den Blutkreislauf, wo diese dann abgebaut werden.\\
+
+a) Nach Einnahme einer Tablette kann die Wirkstoffmenge im Blut näherungsweise durch die Funktion $m$ beschrieben werden:
+\begin{center}
+\[m(t) = 20 * (1-e^{-0.05*t})-0.125 * t~~~~~~~\textrm{mit }t \geq 0\]
+\\$t$ ... Zeit nach der Einnahme in Minuten (min)\\
+$m(t)$ ... Wirkstoffmenge im Blut zur Zeit $t$ in Milligramm (mg)
+\\~\\
+\end{center}
+
+1) Ermitteln Sie, zu welchem Zeitpunkt der Wirkstoff vollständig abgebaut ist. \\
+
+\end{tcolorbox}
+
+~
+~
+
+```{r, echo=FALSE}
+plot(0,0, type="n", ylab="Wirkstoffmenge im Blut zur Zeit t in Milligramm (mg)", xlab="Zeit nach der Einnahme in Minuten (min)", xlim=c(0, 170), ylim=c(-1, 13), main = "Wirkstoffmenge")
+curve(20 * (1 - exp(-0.05*x))-0.125*x, from = 0, to = 170, col="blue", add=TRUE)
+abline(0,0, col="red")
+```
+
+```
+m:20*(1-%e^(-0.05*t))-0.125*t$
+find_root(m,1,170),numer;
+  => 159.9461813518702
+```
+Es wird die Funktion definiert, danach wird mit `find_root()` nach der Nullstelle der Funktion m im Bereich zwischen 1 und 170 gesucht. Diese wird schließlich bei 159.9461813518702 min gefunden.
+
+**Antwort:** Der Wirkstoff ist nach 159.9 Minuten vollständig abgebaut.
+
+
+\begin{tcolorbox}[title=Angabe, colframe=green!50!black, colback=gray!5!white, coltitle=white]
+
+2) Berechnen Sie, zu welchem Zeitpunkt die momentane Änderungsrate der Wirkstoffmenge im Blut 0,5 mg/min beträgt.
+
+\end{tcolorbox}
+
+```
+mdiff: diff(m,t,1)$
+solve(mdiff=0.5,t);
+ => t = 9.400072584914712
+```
+Die vorhin definierte wird einmal abgeleitet. Diese Ableitung wird mit 0.5 gleichgesetzt und die resultierende Gleichung wird mit `solve()` nach t aufgelöst.
+
+**Antwort:** Zum Zeitpunkt von 9.4 Minuten besteht eine momentane Änderungsrate von 0.5 $\frac{\textrm{mg}}{\textrm{min}}$
+
+\begin{tcolorbox}[title=Angabe, colframe=green!50!black, colback=gray!5!white, coltitle=white]
+
+3) Argumentieren Sie mithilfe der Differenzialrechnung, dass die Funktion $m$ negativ gekrümmt ist. \\~\\
+
+\end{tcolorbox}
+
+**Antwort:** Die Funktion $m$ ist negativ gekrümmt, da die Ableitung von $m$, also $m'$, die die Steigung der Stammfunktion beschreibt, fallend ist. Noch stärker verdeutlicht dies die 2. Ableitung, also $m''$, welche sich komplett im negativen Bereich bewegt, sodass die Funktion $m$ negativ gekrümmt sein muss.
+
+\begin{tcolorbox}[title=Angabe, colframe=green!50!black, colback=gray!5!white, coltitle=white]
+
+b) Zur näherungsweisen Beschreibung des Abbaus eines Arzneimittels können lineare oder exponentielle Modelle verwendet werden. \\~\\
+Zu Beginn (t = 0 min) sind 200 mg des Wirkstoffs im Blut, nach 120 Minuten ist nur noch ein Achtel dieser Menge vorhanden.\\
+
+1) Veranschaulichen Sie den Verlauf des linearen Modells im nachstehenden Diagramm.
+
+\end{tcolorbox}
+
+```{r, echo=FALSE}
+plot(0,0, type="n", ylab="Wirkstoffmenge in mg", xlab="Zeit in min", xlim=c(0, 130), ylim=c(-1, 201), main = "Wirkstoffmenge")
+abline(200,-175/120, col="red")
+```
+
+\begin{tcolorbox}[title=Angabe, colframe=green!50!black, colback=gray!5!white, coltitle=white]
+
+2) Ermitteln Sie die Halbwertszeit desjenigen exponentiellen Modells, das diesen Abbau beschreibt, in Minuten.
+
+\end{tcolorbox}
+
+$\frac{1}{8} = \left( \frac{1}{2} \right)^3$
+
+Demnach muss 3x die Halbwertszeit durchlaufen werden, um auf ein $\frac{1}{8}$ Gehalt der ursprünglichen Wirkstoffmenge zu kommen. Das heißt, dass $3 * T_{\frac{1}{2}} = 120$. Die Halbwertszeit $T_{\frac{1}{2}}$ beträgt also 40 Minuten.
+
+\begin{tcolorbox}[title=Angabe, colframe=green!50!black, colback=gray!5!white, coltitle=white]
+
+3) Veranschaulichen Sie den Verlauf des exponentiellen Modells unter Verwendung der ermittelten Halbwertszeit im obigen Diagramm.
+
+\end{tcolorbox}
+
+```{r, echo=FALSE}
+plot(0,0, type="n", ylab="Wirkstoffmenge in mg", xlab="Zeit in min", xlim=c(0, 130), ylim=c(-1, 201), main = "Wirkstoffmenge")
+curve(200 * exp(-x * 0.01732867541216447), col="blue", add=TRUE)
+abline(200,-175/120, col="red")
+```
+
+\begin{tcolorbox}[title=Angabe, colframe=green!50!black, colback=gray!5!white, coltitle=white]
+
+4) Erklären Sie, für welches der beiden Modelle zu jedem Zeitpunkt gilt: 
+
+\begin{center}
+\[\frac{\textrm{d}W}{\textrm{d}t}= - \frac{35}{24}\]
+\end{center}
+
+\end{tcolorbox}
+
+**Antwort:** Hierbei kann es sich nur um das lineare Modell handeln, da die Steigung eines linearen Modells immer konstant ist, die eines exponentiellen Modells sich jedoch ändert. Die hier dargestellte Ableitung ist ein konstanter Wert, demnach muss es das lineare Modell sein.

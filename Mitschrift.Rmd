@@ -2,16 +2,27 @@
 title: "Mathematik Beispiele"
 author: "Michael Beier, Linus Dehner, Ryan Foster"
 date: "1/22/2021"
-output: pdf_document
+output:
+   pdf_document:
+      fig_caption: true
+      number_sections: true
+      extra_dependencies: ["tcolorbox", "graphicx"]
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+\newpage
+
 # Über diese Mitschrift
+
+\newpage
 
 # Beispiele
 
+```{r, child = 'Mitschriften/Abbau_v_Arzneimitteln.Rmd'}
+```
 
+\newpage
 
